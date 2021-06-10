@@ -6,8 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 
-
-
     <style>
         *{
             padding: 0; margin: 0;box-sizing: border-box;
@@ -66,17 +64,10 @@
 
 <script>
 
-    const mywords = document.getElementById('mywords');
-    // mywords.addEventListener('input',()=> {
-    //     alert("HEllo ")
-    // });
-
-
     const setOfWords = ["My name is Rakesh Kumar Singh",
     "I am a student of Sant Atulanand Residential Academy, Holapur, Varanasi",
     "I am currently pursuing Bechelor's in Computer Science and Engineering from ABES Engineering College",
     "Which is situated in Ghaziabad which is a city in west of Uttar Pradesh of India"];
-
 
     const msg = document.getElementById('msg');
     const typeWords = document.getElementById('mywords');
@@ -89,6 +80,10 @@
         let date = new Date();
         startTime = date.getTime();
         btn.innerText = "Done";
+
+        setInterval(function(){endPlay()},10000);
+
+
     }
 
     const endPlay = () => {
@@ -96,8 +91,6 @@
         endTime = date.getTime();
         let totalTime = ((endTime - startTime)/1000)
         console.log(totalTime);
-
-
 
         let totalStr = typeWords.value;
         let wordCount = wordCounter(totalStr);
@@ -126,7 +119,6 @@
     
 
 
-
     const wordCounter = (str) => {
         let response = str.split(" ").length;
         return response;
@@ -134,22 +126,7 @@
 
 
 
-    btn.addEventListener('click',function(){
-        console.log(this);
-        if(this.innerText == 'Start'){
-            typeWords.disabled = false;
-            playGame();
-        }else if(this.innerText == "Done"){
-            typeWords.disabled = true;
-            btn.innerText = "Start";
-            endPlay();
-        }
-    });
-
-
-
-
-    mywords.addEventListener('focus', () => {
+    typeWords.addEventListener('focus', () => {
         console.log(this);
         playGame();
         // if(this.innerText == 'Start'){
