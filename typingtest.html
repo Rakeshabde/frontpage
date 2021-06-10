@@ -59,7 +59,12 @@
         <br>
         <button id="btn" class="mainbtn">Start</button>
     </div>
+
 </div>
+
+
+<h2 id="msg2">Hello World</h2>
+
 
 
 <script>
@@ -71,7 +76,11 @@
 
     const msg = document.getElementById('msg');
     const typeWords = document.getElementById('mywords');
-    const btn = document.getElementById('btn')
+    const btn = document.getElementById('btn');
+    const msg2 = document.getElementById("msg2");
+
+
+
     let startTime, endTime;
 
     const playGame = () =>  {
@@ -81,7 +90,10 @@
         startTime = date.getTime();
         btn.innerText = "Done";
 
-        setInterval(function(){endPlay()},10000);
+        const len = setOfWords[randomNumber].length;
+        console.log("The length of the string is "+ len)
+
+        setInterval(function(){endPlay()},5000);
 
 
     }
@@ -98,7 +110,7 @@
         let speed = Math.round((wordCount/totalTime)*60);
         let finalMsg = "You typed total at " + speed + "words per minute";
         finalMsg += compareWords(msg.innerText, totalStr );
-        msg.innerText = finalMsg;
+        msg2.innerText = finalMsg;
     }
 
 
