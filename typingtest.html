@@ -76,20 +76,26 @@
     const msg2 = document.getElementById("msg2");
 
     let startTime, endTime;
+    let randNumber;
 
- 
+    
+    btn.addEventListener("click", changeText);
 
+
+    function changeText(){
+        let randomNumber = Math.floor(Math.random()*setOfWords.length);
+        randNumber = randomNumber;
+        msg.innerText = setOfWords[randomNumber];
+    }
 
     const playGame = () =>  {
-        let randomNumber = Math.floor(Math.random()*setOfWords.length);
-        msg.innerText = setOfWords[randomNumber];
         let date = new Date();
         startTime = date.getTime();
 
-        const len = setOfWords[randomNumber].length;
+        const len = setOfWords[randNumber].length;
         console.log("The length of the string is "+ len)
 
-        setInterval(function(){endPlay()},5000);
+        setInterval(function(){endPlay()},1);
     }
 
     const endPlay = () => {
@@ -102,7 +108,7 @@
         let wordCount = wordCounter(totalStr);
 
         let speed = Math.round((wordCount/totalTime)*60);
-        let finalMsg = "You typed total at " + speed + "words per minute";
+        let finalMsg = "You typed total at " + speed + " WPM \n";
         finalMsg += compareWords(msg.innerText, totalStr );
         msg2.innerText = finalMsg;
     }
@@ -119,7 +125,7 @@
         });
 
         let errorWords = (words1.length - cnt);
-        return (cnt + " correct out of " + words1.length + " words and the total number of error are " + errorWords + " .")
+        return (cnt + " correct out of " + words1.length + " words \n total number of error are " + errorWords + " .")
     }
 
     const wordCounter = (str) => {
@@ -129,26 +135,10 @@
 
 
 
-    btn.addEventListener("click", changeText);
-
-
-    function changeText(){
-        let randomNumber = Math.floor(Math.random()*setOfWords.length);
-        msg.innerText = setOfWords[randomNumber];
-    }
-
 
     typeWords.addEventListener('keypress', () => {
         console.log(this);
         playGame();
-        // if(this.innerText == 'Start'){
-        //     typeWords.disabled = false;
-        //     playGame();
-        // }else if(this.innerText == "Done"){
-        //     typeWords.disabled = true;
-        //     btn.innerText = "Start";
-        //     endPlay();
-        // }
     });
 
 
