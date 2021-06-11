@@ -77,6 +77,7 @@
 
     let startTime, endTime;
     let randNumber;
+    let totalLength=0;
 
 
     btn.addEventListener("click", changeText);
@@ -86,19 +87,20 @@
         let randomNumber = Math.floor(Math.random()*setOfWords.length);
         randNumber = randomNumber;
         msg.innerText = setOfWords[randomNumber];
+        totalLength = setOfWords[randNumber].length;
     }
+
 
     const playGame = () =>  {
         let date = new Date();
         startTime = date.getTime();
-
-        const len = setOfWords[randNumber].length;
-        console.log("The length of the string is "+ len)
-
         setInterval(function(){endPlay()},1200);
     }
 
+
     const endPlay = () => {
+
+
         let date = new Date();
         endTime = date.getTime();
         let totalTime = ((endTime - startTime)/1000)
@@ -110,6 +112,14 @@
         let finalMsg = "You typed total at " + speed + " WPM \n";
         finalMsg += compareWords(msg.innerText, totalStr );
         msg2.innerText = finalMsg;
+
+        let charCount = charCounter(totalStr);
+        console.log("lenght : ",charCount)
+
+        if(charCount == totalLength){
+            alert("hello completed")
+        }
+
 
     }
 
@@ -131,6 +141,11 @@
     const wordCounter = (str) => {
         let response = str.split(" ").length;
         return response;
+    }
+
+    const charCounter = (str) => {
+        let charCount = str.split('').length;
+        return charCount; 
     }
 
 
