@@ -78,7 +78,7 @@
     let startTime, endTime;
     let randNumber;
 
-    
+
     btn.addEventListener("click", changeText);
 
 
@@ -110,6 +110,7 @@
         let finalMsg = "You typed total at " + speed + " WPM \n";
         finalMsg += compareWords(msg.innerText, totalStr );
         msg2.innerText = finalMsg;
+
     }
 
     const compareWords = (str1, str2) => {
@@ -124,14 +125,13 @@
         });
 
         let errorWords = (words1.length - cnt);
-        return (cnt + " correct out of " + words1.length + " words \n total number of error are " + errorWords + " .")
+        return (cnt + " correct out of " + words1.length + " words \n Errors : " + errorWords + " .")
     }
 
     const wordCounter = (str) => {
         let response = str.split(" ").length;
         return response;
     }
-
 
 
 
