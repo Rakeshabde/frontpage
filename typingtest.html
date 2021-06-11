@@ -93,6 +93,9 @@
             totalLength = setOfWords[randNumber].length;
             msg2.innerText = "";
             typeWords.value = "";
+            typeWords.removeAttribute('disabled');
+
+            typeWords.addEventListener('keypress', once, false);
 
         }
 
@@ -121,14 +124,16 @@
                 console.log("Length : ", charCount)
 
 
-                
+
                 if (charCount >= totalLength) {
-                    typeWords.disabled="true";
                     clearInterval(timer);
+                    typeWords.disabled="true";
                 }
 
 
             }, 1200);
+
+            
         }
 
 
