@@ -95,19 +95,18 @@
         const len = setOfWords[randNumber].length;
         console.log("The length of the string is "+ len)
 
-        setInterval(function(){endPlay()},1);
+        setInterval(function(){endPlay()},1200);
     }
 
     const endPlay = () => {
         let date = new Date();
         endTime = date.getTime();
         let totalTime = ((endTime - startTime)/1000)
-        console.log(totalTime);
 
         let totalStr = typeWords.value;
         let wordCount = wordCounter(totalStr);
 
-        let speed = Math.round((wordCount/totalTime)*60);
+        let speed = Math.round(((wordCount/5)/totalTime)*60);
         let finalMsg = "You typed total at " + speed + " WPM \n";
         finalMsg += compareWords(msg.innerText, totalStr );
         msg2.innerText = finalMsg;
@@ -137,7 +136,6 @@
 
 
     typeWords.addEventListener('keypress', () => {
-        console.log(this);
         playGame();
     });
 
