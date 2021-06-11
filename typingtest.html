@@ -84,7 +84,6 @@
         let totalLength = 0;
 
 
-        btn.addEventListener("click", changeText);
 
 
         function changeText() {
@@ -92,13 +91,20 @@
             randNumber = randomNumber;
             msg.innerText = setOfWords[randomNumber];
             totalLength = setOfWords[randNumber].length;
+            msg2.innerText = "";
+            typeWords.value = "";
+
         }
+
+
+        btn.addEventListener("click", changeText);
 
 
         const playGame = () => {
             let date = new Date();
             startTime = date.getTime();
-            setInterval(function () {
+
+           var timer = setInterval(function () {
                 let date = new Date();
                 endTime = date.getTime();
                 let totalTime = ((endTime - startTime) / 1000)
@@ -114,34 +120,17 @@
                 let charCount = charCounter(totalStr);
                 console.log("Length : ", charCount)
 
+
+                
                 if (charCount >= totalLength) {
-                    alert("hello completed")
+                    typeWords.disabled="true";
+                    clearInterval(timer);
                 }
+
+
             }, 1200);
         }
 
-
-        // const endPlay = () => {
-
-        //     let date = new Date();
-        //     endTime = date.getTime();
-        //     let totalTime = ((endTime - startTime)/1000)
-
-        //     let totalStr = typeWords.value;
-        //     let wordCount = wordCounter(totalStr);
-
-        //     let speed = Math.round(((wordCount/5)/totalTime)*60);
-        //     let finalMsg = "You typed total at " + speed + " WPM \n";
-        //     finalMsg += compareWords(msg.innerText, totalStr );
-        //     msg2.innerText = finalMsg;
-
-        //     let charCount = charCounter(totalStr);
-        //     console.log("Length : ",charCount)
-
-        //     if(charCount == totalLength){
-        //         alert("hello completed")
-        //     }
-        // }
 
         const compareWords = (str1, str2) => {
             let words1 = str1.split(" ");
@@ -174,9 +163,33 @@
             playGame();
             typeWords.removeEventListener('keypress', once);
         };
-
         typeWords.addEventListener('keypress', once, false);
 
+
+
+
+
+        // const endPlay = () => {
+
+        //     let date = new Date();
+        //     endTime = date.getTime();
+        //     let totalTime = ((endTime - startTime)/1000)
+
+        //     let totalStr = typeWords.value;
+        //     let wordCount = wordCounter(totalStr);
+
+        //     let speed = Math.round(((wordCount/5)/totalTime)*60);
+        //     let finalMsg = "You typed total at " + speed + " WPM \n";
+        //     finalMsg += compareWords(msg.innerText, totalStr );
+        //     msg2.innerText = finalMsg;
+
+        //     let charCount = charCounter(totalStr);
+        //     console.log("Length : ",charCount)
+
+        //     if(charCount == totalLength){
+        //         alert("hello completed")
+        //     }
+        // }
 
 
     </script>
