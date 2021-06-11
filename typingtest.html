@@ -149,10 +149,14 @@
     }
 
 
-
-    typeWords.addEventListener('keypress', () => {
+    var once = function () {
+        console.log('once');
         playGame();
-    });
+        typeWords.removeEventListener('keypress', once);
+    };
+
+    typeWords.addEventListener('keypress', once, false);
+
 
 
 </script>
