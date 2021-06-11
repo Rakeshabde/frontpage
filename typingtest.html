@@ -48,7 +48,7 @@
     </style>
 
 </head>
-<body>
+<body onload="changeText()">
     
 <div class="mainDiv">
     <div class="centerDiv">
@@ -57,12 +57,11 @@
         <br>
         <textarea name="" id="mywords" cols="100" rows="10" placeholder="Remember, be nice!"></textarea>
         <br>
-        <button id="btn" class="mainbtn">Start</button>
+        <button id="btn" class="mainbtn">Restart</button>
     </div>
 </div>
 
 <h2 id="msg2">Hello World</h2>
-
 
 <script>
 
@@ -78,12 +77,14 @@
 
     let startTime, endTime;
 
+ 
+
+
     const playGame = () =>  {
         let randomNumber = Math.floor(Math.random()*setOfWords.length);
         msg.innerText = setOfWords[randomNumber];
         let date = new Date();
         startTime = date.getTime();
-        btn.innerText = "Done";
 
         const len = setOfWords[randomNumber].length;
         console.log("The length of the string is "+ len)
@@ -106,7 +107,6 @@
         msg2.innerText = finalMsg;
     }
 
-
     const compareWords = (str1, str2) => {
         let words1 = str1.split(" ");
         let words2 = str2.split(" ");
@@ -121,8 +121,6 @@
         let errorWords = (words1.length - cnt);
         return (cnt + " correct out of " + words1.length + " words and the total number of error are " + errorWords + " .")
     }
-    
-
 
     const wordCounter = (str) => {
         let response = str.split(" ").length;
@@ -131,7 +129,16 @@
 
 
 
-    typeWords.addEventListener('focus', () => {
+    btn.addEventListener("click", changeText);
+
+
+    function changeText(){
+        let randomNumber = Math.floor(Math.random()*setOfWords.length);
+        msg.innerText = setOfWords[randomNumber];
+    }
+
+
+    typeWords.addEventListener('keypress', () => {
         console.log(this);
         playGame();
         // if(this.innerText == 'Start'){
