@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,18 +8,20 @@
     <title>Document</title>
 
     <style>
-        *{
-            padding: 0; margin: 0;box-sizing: border-box;
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
         }
 
-        .mainDiv{
+        .mainDiv {
             width: 100%;
             height: 100vh;
             position: relative;
             background-color: #3498db;
         }
 
-        h1{
+        h1 {
             text-transform: capitalize;
             margin-bottom: 30px;
             color: #ecf0f1;
@@ -26,19 +29,19 @@
             font-size: 2.1rem;
         }
 
-        h2{
+        h2 {
             text-align: center;
         }
 
-        textarea{
+        textarea {
             background-color: #444;
-            box-shadow: 0 0 1px rgba(0,0,0,0.2);
+            box-shadow: 0 0 1px rgba(0, 0, 0, 0.2);
             border-radius: 10px 10px 0 0;
             border: 20px solid #34495e;
             color: white;
         }
 
-        .centerDiv{
+        .centerDiv {
             position: absolute;
             top: 50%;
             left: 50%;
@@ -48,118 +51,136 @@
     </style>
 
 </head>
+
 <body onload="changeText()">
-    
-<div class="mainDiv">
-    <div class="centerDiv">
-        <h1>Welcome to Typing Speed Test</h1>
-        <h2 id="msg"></h2>
-        <br>
-        <textarea name="" id="mywords" cols="100" rows="10" placeholder="Remember, be nice!"></textarea>
-        <br>
-        <button id="btn" class="mainbtn">Restart</button>
+
+    <div class="mainDiv">
+        <div class="centerDiv">
+            <h1>Welcome to Typing Speed Test</h1>
+            <h2 id="msg"></h2>
+            <br>
+            <textarea name="" id="mywords" cols="100" rows="10" placeholder="Remember, be nice!"></textarea>
+            <br>
+            <button id="btn" class="mainbtn">Restart</button>
+        </div>
     </div>
-</div>
 
-<h2 id="msg2">Hello World</h2>
+    <h2 id="msg2">Hello World</h2>
 
-<script>
+    <script>
 
-    const setOfWords = ["My name is Rakesh Kumar Singh",
-    "I am a student of Sant Atulanand Residential Academy, Holapur, Varanasi",
-    "I am currently pursuing Bechelor's in Computer Science and Engineering from ABES Engineering College",
-    "Which is situated in Ghaziabad which is a city in west of Uttar Pradesh of India"];
+        const setOfWords = ["My name is Rakesh Kumar Singh",
+            "I am a student of Sant Atulanand Residential Academy, Holapur, Varanasi",
+            "I am currently pursuing Bechelor's in Computer Science and Engineering from ABES Engineering College",
+            "Which is situated in Ghaziabad which is a city in west of Uttar Pradesh of India"];
 
-    const msg = document.getElementById('msg');
-    const typeWords = document.getElementById('mywords');
-    const btn = document.getElementById('btn');
-    const msg2 = document.getElementById("msg2");
+        const msg = document.getElementById('msg');
+        const typeWords = document.getElementById('mywords');
+        const btn = document.getElementById('btn');
+        const msg2 = document.getElementById("msg2");
 
-    let startTime, endTime;
-    let randNumber;
-    let totalLength=0;
-
-
-    btn.addEventListener("click", changeText);
+        let startTime, endTime;
+        let randNumber;
+        let totalLength = 0;
 
 
-    function changeText(){
-        let randomNumber = Math.floor(Math.random()*setOfWords.length);
-        randNumber = randomNumber;
-        msg.innerText = setOfWords[randomNumber];
-        totalLength = setOfWords[randNumber].length;
-    }
+        btn.addEventListener("click", changeText);
 
 
-    const playGame = () =>  {
-        let date = new Date();
-        startTime = date.getTime();
-        setInterval(function(){endPlay()},1200);
-    }
-
-
-    const endPlay = () => {
-
-
-        let date = new Date();
-        endTime = date.getTime();
-        let totalTime = ((endTime - startTime)/1000)
-
-        let totalStr = typeWords.value;
-        let wordCount = wordCounter(totalStr);
-
-        let speed = Math.round(((wordCount/5)/totalTime)*60);
-        let finalMsg = "You typed total at " + speed + " WPM \n";
-        finalMsg += compareWords(msg.innerText, totalStr );
-        msg2.innerText = finalMsg;
-
-        let charCount = charCounter(totalStr);
-        console.log("lenght : ",charCount)
-
-        if(charCount == totalLength){
-            alert("hello completed")
+        function changeText() {
+            let randomNumber = Math.floor(Math.random() * setOfWords.length);
+            randNumber = randomNumber;
+            msg.innerText = setOfWords[randomNumber];
+            totalLength = setOfWords[randNumber].length;
         }
 
 
-    }
+        const playGame = () => {
+            let date = new Date();
+            startTime = date.getTime();
+            setInterval(function () {
+                let date = new Date();
+                endTime = date.getTime();
+                let totalTime = ((endTime - startTime) / 1000)
 
-    const compareWords = (str1, str2) => {
-        let words1 = str1.split(" ");
-        let words2 = str2.split(" ");
-        let cnt = 0;
+                let totalStr = typeWords.value;
+                let wordCount = wordCounter(totalStr);
 
-        words1.forEach( function(item,index){
-            if(item == words2[index]){
-                cnt++;
-            }
-        });
+                let speed = Math.round(((wordCount / 5) / totalTime) * 60);
+                let finalMsg = "You typed total at " + speed + " WPM \n";
+                finalMsg += compareWords(msg.innerText, totalStr);
+                msg2.innerText = finalMsg;
 
-        let errorWords = (words1.length - cnt);
-        return (cnt + " correct out of " + words1.length + " words \n Errors : " + errorWords + " .")
-    }
+                let charCount = charCounter(totalStr);
+                console.log("Length : ", charCount)
 
-    const wordCounter = (str) => {
-        let response = str.split(" ").length;
-        return response;
-    }
-
-    const charCounter = (str) => {
-        let charCount = str.split('').length;
-        return charCount; 
-    }
+                if (charCount >= totalLength) {
+                    alert("hello completed")
+                }
+            }, 1200);
+        }
 
 
-    var once = function () {
-        console.log('once');
-        playGame();
-        typeWords.removeEventListener('keypress', once);
-    };
+        // const endPlay = () => {
 
-    typeWords.addEventListener('keypress', once, false);
+        //     let date = new Date();
+        //     endTime = date.getTime();
+        //     let totalTime = ((endTime - startTime)/1000)
+
+        //     let totalStr = typeWords.value;
+        //     let wordCount = wordCounter(totalStr);
+
+        //     let speed = Math.round(((wordCount/5)/totalTime)*60);
+        //     let finalMsg = "You typed total at " + speed + " WPM \n";
+        //     finalMsg += compareWords(msg.innerText, totalStr );
+        //     msg2.innerText = finalMsg;
+
+        //     let charCount = charCounter(totalStr);
+        //     console.log("Length : ",charCount)
+
+        //     if(charCount == totalLength){
+        //         alert("hello completed")
+        //     }
+        // }
+
+        const compareWords = (str1, str2) => {
+            let words1 = str1.split(" ");
+            let words2 = str2.split(" ");
+            let cnt = 0;
+
+            words1.forEach(function (item, index) {
+                if (item == words2[index]) {
+                    cnt++;
+                }
+            });
+
+            let errorWords = (words1.length - cnt);
+            return (cnt + " correct out of " + words1.length + " words \n Errors : " + errorWords + " .")
+        }
+
+        const wordCounter = (str) => {
+            let response = str.split(" ").length;
+            return response;
+        }
+
+        const charCounter = (str) => {
+            let charCount = str.split('').length;
+            return charCount;
+        }
+
+
+        var once = function () {
+            console.log('once');
+            playGame();
+            typeWords.removeEventListener('keypress', once);
+        };
+
+        typeWords.addEventListener('keypress', once, false);
 
 
 
-</script>
+    </script>
 
 </body>
+
 </html>
