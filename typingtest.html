@@ -115,7 +115,7 @@
                 let totalStr = typeWords.value;
                 let wordCount = wordCounter(totalStr);
 
-                let speed = Math.round(((wordCount / 5) / totalTime) * 60);
+                let speed = Math.floor(((wordCount / 5) / totalTime) * 60);
                 let finalMsg = "You typed total at " + speed + " WPM \n";
                 finalMsg += compareWords(msg.innerText, totalStr);
                 msg2.innerText = finalMsg;
@@ -129,7 +129,6 @@
                     typeWords.disabled="true";
                 }
 
-
             }, 1);
 
             
@@ -140,14 +139,13 @@
             let words1 = str1.split(" ");
             let words2 = str2.split(" ");
             let cnt = 0;
-
-            words1.forEach(function (item, index) {
-                if (item == words2[index]) {
+            words2.forEach(function (item, index) {
+                if (item == words1[index]) {
                     cnt++;
                 }
             });
 
-            let errorWords = (words1.length - cnt);
+            let errorWords = (words2.length - cnt);
             return (cnt + " correct out of " + words1.length + " words \n Errors : " + errorWords + " .")
         }
 
